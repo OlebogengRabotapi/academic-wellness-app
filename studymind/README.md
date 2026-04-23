@@ -333,10 +333,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👨‍💻 Author
 
-**[Your Name]**
-- Portfolio: [your-portfolio-link]
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [your-linkedin]
+**[Olebogeng Rabotapi]**
+- GitHub: [@OlebogengRabotapi](https://github.com/OlebogengRabotapi)
+- LinkedIn: [www.linkedin.com/in/olebogeng-rabotapi]
 
 ## 💬 Support
 
