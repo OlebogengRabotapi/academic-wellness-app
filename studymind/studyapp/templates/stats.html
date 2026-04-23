@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Study Statistics - StudyMind{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Your Study Statistics</h2>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-book fa-2x text-primary mb-2"></i>
+                <h6 class="card-title">Study Materials</h6>
+                <h3>{{ materials_count }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-sparkles fa-2x text-success mb-2"></i>
+                <h6 class="card-title">Summaries Generated</h6>
+                <h3>{{ summaries_count }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-question-circle fa-2x text-info mb-2"></i>
+                <h6 class="card-title">Questions Generated</h6>
+                <h3>{{ questions_count }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-clock fa-2x text-warning mb-2"></i>
+                <h6 class="card-title">Study Sessions</h6>
+                <h3>{{ total_sessions }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">Total Study Time</h6>
+            </div>
+            <div class="card-body text-center">
+                <h2 class="text-primary">{{ total_study_minutes }}</h2>
+                <p class="text-muted">minutes</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">Activity Breakdown</h6>
+            </div>
+            <div class="card-body">
+                {% for activity in activity_breakdown %}
+                    <div class="mb-2">
+                        <strong>{{ activity.activity_type|capfirst }}</strong>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: {% widthratio activity.count total_sessions 100 %}%">
+                                {{ activity.count }}
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="text-muted">No activity yet</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-info">
+    <h5>Keep Learning!</h5>
+    <p>Continue creating study materials and using AI features to enhance your learning journey.</p>
+</div>
+{% endblock %}

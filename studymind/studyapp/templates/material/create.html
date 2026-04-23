@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Create Study Material - StudyMind{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4">Create New Study Material</h2>
+        
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.help_text %}
+                                <small class="form-text text-muted d-block mt-1">{{ field.help_text|safe }}</small>
+                            {% endif %}
+                            {% if field.errors %}
+                                <div class="alert alert-danger mt-2">
+                                    {{ field.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Create Material</button>
+                        <a href="{% url 'studyapp:material_list' %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="alert alert-info mt-4">
+            <h5>Tips:</h5>
+            <ul class="mb-0">
+                <li>Enter your study notes or paste content from your textbook</li>
+                <li>Add a clear title to help you identify the material later</li>
+                <li>After creating, you can generate AI summaries and practice questions</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

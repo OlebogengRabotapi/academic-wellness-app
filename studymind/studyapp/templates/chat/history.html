@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Chat History - StudyMind{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2 class="mb-4">Chat History</h2>
+        <p class="text-muted">{{ material.title }}</p>
+        
+        {% if messages %}
+            <div class="chat-container mb-4" style="max-height: 500px; overflow-y: auto;">
+                {% for message in messages %}
+                    <div class="mb-4">
+                        <div class="card bg-light mb-2">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">You</h6>
+                                <p class="card-text">{{ message.user_message }}</p>
+                                <small class="text-muted">{{ message.created_at|date:"M d, Y h:i A" }}</small>
+                            </div>
+                        </div>
+                        
+                        <div class="card bg-primary bg-opacity-10">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-primary">
+                                    <i class="fas fa-robot"></i> AI Tutor
+                                </h6>
+                                <p class="card-text">{{ message.ai_response }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                No chat messages yet. Start asking questions to the AI tutor!
+            </div>
+        {% endif %}
+        
+        <a href="{% url 'studyapp:material_detail' material.pk %}" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left"></i> Back to Material
+        </a>
+    </div>
+</div>
+{% endblock %}

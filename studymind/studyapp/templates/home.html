@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Home - StudyMind{% endblock %}
+
+{% block content %}
+<div class="jumbotron py-5 bg-light rounded">
+    <h1 class="display-4 fw-bold">Welcome to StudyMind</h1>
+    <p class="lead">Your AI-Powered Study Assistant</p>
+    <hr class="my-4">
+    <p class="fs-5">
+        Transform your study experience with AI-powered summaries, practice questions, and intelligent tutoring.
+    </p>
+    <a class="btn btn-primary btn-lg me-2" href="{% url 'studyapp:register' %}" role="button">Get Started</a>
+    <a class="btn btn-outline-primary btn-lg" href="{% url 'studyapp:login' %}" role="button">Login</a>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-robot fa-3x text-primary mb-3"></i>
+                <h5 class="card-title">AI Summaries</h5>
+                <p class="card-text">Get instant summaries of your notes and study materials with AI-powered analysis.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-question-circle fa-3x text-success mb-3"></i>
+                <h5 class="card-title">Practice Questions</h5>
+                <p class="card-text">Generate unlimited practice questions tailored to your study materials.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-comments fa-3x text-info mb-3"></i>
+                <h5 class="card-title">AI Tutor</h5>
+                <p class="card-text">Chat with our intelligent AI tutor to clarify doubts and deepen understanding.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <h3>Why StudyMind?</h3>
+        <ul class="list-group">
+            <li class="list-group-item"><i class="fas fa-check text-success"></i> Save time with AI-generated summaries</li>
+            <li class="list-group-item"><i class="fas fa-check text-success"></i> Master topics with practice questions</li>
+            <li class="list-group-item"><i class="fas fa-check text-success"></i> Get instant answers from AI tutor</li>
+            <li class="list-group-item"><i class="fas fa-check text-success"></i> Track your study progress</li>
+            <li class="list-group-item"><i class="fas fa-check text-success"></i> Study from anywhere, anytime</li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h3>Platform Stats</h3>
+        <div class="row text-center">
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ total_users }}</h5>
+                        <p class="card-text">Active Users</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ total_materials }}</h5>
+                        <p class="card-text">Study Materials</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ total_summaries }}</h5>
+                        <p class="card-text">AI Summaries Generated</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-info mt-5" role="alert">
+    <h4 class="alert-heading">New to StudyMind?</h4>
+    <p>Create an account to start uploading your study materials and leverage the power of AI to enhance your learning!</p>
+</div>
+{% endblock %}

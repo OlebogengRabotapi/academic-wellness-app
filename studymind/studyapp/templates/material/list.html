@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}My Study Materials - StudyMind{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-6">
+        <h2>My Study Materials</h2>
+    </div>
+    <div class="col-md-6 text-end">
+        <a href="{% url 'studyapp:create_material' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> New Material
+        </a>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <form method="GET" class="input-group">
+            <input type="text" class="form-control" name="q" placeholder="Search materials..." value="{{ query|default:'' }}">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+{% if materials %}
+    <div class="row">
+        {% for material in materials %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'studyapp:material_detail' material.pk %}" class="text-decoration-none">
+                                {{ material.title }}
+                            </a>
+                        </h5>
+                        <p class="card-text text-muted">{{ material.description|truncatewords:20 }}</p>
+                        
+                        <div class="mb-3">
+                            <small class="text-muted">
+                                <i class="fas fa-calendar"></i> {{ material.created_at|date:"M d, Y" }}
+                                <span class="ms-2"><i class="fas fa-words"></i> {{ material.word_count }} words</span>
+                            </small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            {% if material.summary %}
+                                <span class="badge bg-success"><i class="fas fa-check"></i> Summary</span>
+                            {% endif %}
+                            {% if material.practice_questions.exists %}
+                                <span class="badge bg-info"><i class="fas fa-check"></i> Questions</span>
+                            {% endif %}
+                        </div>
+                        
+                        <a href="{% url 'studyapp:material_detail' material.pk %}" class="btn btn-primary btn-sm">View</a>
+                        <a href="{% url 'studyapp:edit_material' material.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        <h5>No study materials yet</h5>
+        <p>Start by creating your first study material to get AI-powered summaries and practice questions!</p>
+        <a href="{% url 'studyapp:create_material' %}" class="btn btn-primary">Create First Material</a>
+    </div>
+{% endif %}
+{% endblock %}

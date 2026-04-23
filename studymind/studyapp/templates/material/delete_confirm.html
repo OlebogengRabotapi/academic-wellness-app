@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Material - StudyMind{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-danger">
+            <div class="card-body p-4">
+                <h4 class="card-title text-danger">Delete Study Material?</h4>
+                <p class="card-text">
+                    Are you sure you want to delete <strong>"{{ material.title }}"</strong>?
+                </p>
+                <p class="text-muted">This action cannot be undone. All associated summaries, questions, and chat history will also be deleted.</p>
+                
+                <div class="d-flex gap-2">
+                    <form method="POST" class="flex-grow-1">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger w-100">Delete</button>
+                    </form>
+                    <a href="{% url 'studyapp:material_detail' material.pk %}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
